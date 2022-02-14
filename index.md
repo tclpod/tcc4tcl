@@ -1,10 +1,44 @@
-High-Level API Manual Page
-==========================
+tcc4tcl - Progamming with C in Tcl
+==================================
 
-`package require tcc4tcl`
+[tcc]: http://bellard.org/tcc/
+
+tcc4tcl (Tiny C Compiler for Tcl) is a Tcl extension that provides an interface to [TCC].
+
+
+## Quick Example
+
+```tcl
+package require tcc4tcl
+
+::tcc4tcl::cproc test {int i} int {
+    return (i + 42); 
+}
+
+puts [test 1]
+```
+
+* `tcc4tcl::cproc` is used to define Tcl command with C
+* `{int i}` is arguments
+* `int` after `{int i}` is return value type
+
+[More examples ...](example.md)
+
+## High-Level API Overview
+
+```tcl
+package require tcc4tcl
+
+tcc4tcl::cproc <procName> <argList> <returnType> ?<code>?
+
+set handler [tcc4tcl::new]
+$handler cproc <procName> <argList> <returnType> ?<code>?
+$handler go
+```
 
 tcc4tcl::new
 ------------
+
 Creates a new TCC interpreter instance.
 
 Synposis:
